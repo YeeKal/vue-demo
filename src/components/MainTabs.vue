@@ -24,7 +24,7 @@ import { provide, ref } from 'vue';
 export default {
     setup() {
         const tabs = ref([]);
-        const active_index = ref(1);
+        const active_index = ref(2);
         provide("tabsState", {
             active_index,
             tabs,

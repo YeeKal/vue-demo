@@ -12,7 +12,7 @@
 - [x] **色块**
 - [x] **用户输入输出连接**
     - 参考网页：[email-helper](https://email-helper.vercel.app/)
-- [ ] **动态文字**
+- [x] **动态文字**
     - 参考网页:[mfrashad](https://www.mfrashad.com/)
 - [ ] **暗黑模式切换**
 - [ ] **图片处理**
