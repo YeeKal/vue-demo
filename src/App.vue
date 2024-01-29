@@ -5,7 +5,7 @@
     <MainTabs>
       <MainTab title="CountButton"> <CountButton/> </MainTab>
       <MainTab title="Memo"><MemoMain/></MainTab>
-      <MainTab title="Tab 3">Hello From Tab 3</MainTab>
+      <MainTab title="TypingEffect"><TypingEffect/></MainTab>
       <MainTab title="Tab 4">Hello From Tab 4</MainTab>
     </MainTabs>
   </div>
@@ -17,6 +17,7 @@ import MainTab from './components/MainTab.vue';
 import MainTabs from './components/MainTabs.vue';
 import CountButton from './components/CountButton.vue';
 import MemoMain from './components/ShareCard/MemoMain.vue';
+import TypingEffect from './components/TypingEffect.vue';
 
 export default {  
   name: 'App',
@@ -24,7 +25,8 @@ export default {
     MainTab,
     MainTabs,
     CountButton,
-    MemoMain
+    MemoMain,
+    TypingEffect
   }
 }
 </script>
