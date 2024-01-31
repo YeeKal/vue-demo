@@ -45,3 +45,9 @@ yarn add package-name #add new dependency
 yarn add -D tailwindcss
 npx tailwindcss init -p
 '''
+
+**opentype**
+
+```bash
+yarn add opentype.js
+```
