@@ -6,7 +6,7 @@
       <MainTab title="CountButton"> <CountButton/> </MainTab>
       <MainTab title="Memo"><MemoMain/></MainTab>
       <MainTab title="TypingEffect"><TypingEffect/></MainTab>
-      <MainTab title="Tab 4">Hello From Tab 4</MainTab>
+      <MainTab title="说文"><ShuoWen/></MainTab>
     </MainTabs>
   </div>
 </template>
@@ -18,6 +18,7 @@ import MainTabs from './components/MainTabs.vue';
 import CountButton from './components/CountButton.vue';
 import MemoMain from './components/ShareCard/MemoMain.vue';
 import TypingEffect from './components/TypingEffect.vue';
+import ShuoWen from './components/ShuoWen/ShuoWen.vue';
 
 export default {  
   name: 'App',
@@ -26,7 +27,8 @@ export default {
     MainTabs,
     CountButton,
     MemoMain,
-    TypingEffect
+    TypingEffect,
+    ShuoWen
   }
 }
 </script>
@@ -37,7 +39,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
   margin-top: 60px;
 }
 </style>
