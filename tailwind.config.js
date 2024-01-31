@@ -4,10 +4,17 @@ module.exports = {
   darkMode: 'class',
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        bgBase: 'var(--color-bgBase)',
+        surface: 'var(--color-surface)',
+        textOnBase: 'var(--color-textOnBase)',
+        textOnSurface: 'var(--color-textOnSurface)',
+      }
+    },
   },
   plugins: [],
-  safelist: [ 
+  safelist: [
     'bg-opacity-0',
     'bg-opacity-10',
     'bg-opacity-20',
@@ -18,7 +25,10 @@ module.exports = {
     'bg-opacity-70',
     'bg-opacity-80',
     'bg-opacity-90',
-    'bg-opacity-100'
+    'bg-opacity-100',
+
+    // i have to add this because tailwind is not smart enough to detect that bg-bgBase is used
+    'bg-bgBase'  
   ]
 }
 

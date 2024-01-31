@@ -69,7 +69,6 @@ const multiLineTypeEffect = () =>{
             typing_text3.value.pop();
         }
         typing_text3.value[index3] = type_text3[index3].substring(0, typing_text3.value[index3].length - 1);
-        console.log(index3, typing_text3.value[index3].length);
         let sleep_time = 100;
         if(typing_text3.value[index3].length == 0){
             index3 --;

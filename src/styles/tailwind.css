@@ -2,3 +2,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+@layer base {
+    :root {
+      --color-bgBase: #ffffff;
+      --color-surface: #292d3e;
+      --color-textOnBase: #213547;
+      --color-textOnSurface: #d4d4d8;
+    }
+  
+    /* If the user's system preference is dark */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bgBase: #1a1a1a;
+        --color-surface: #242424;
+        --color-textOnBase: #e1e1e1;
+        --color-textOnSurface: #e1e1e1;
+      }
+    }
+    
+    /* If the user switchs dark mode */
+    :root[theme-mode="dark"] {
+        --color-bgBase: #1a1a1a;
+        --color-surface: #242424;
+        --color-textOnBase: #e1e1e1;
+        --color-textOnSurface: #e1e1e1;
+    }
+  
+    /* If the user switchs light mode */
+    :root[theme-mode="light"] {
+        --color-bgBase: #ffffff;
+        --color-surface: #292d3e;
+        --color-textOnBase: #213547;
+        --color-textOnSurface: #d4d4d8;
+    }
+  }
