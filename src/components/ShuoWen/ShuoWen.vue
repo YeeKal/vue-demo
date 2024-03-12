@@ -26,6 +26,10 @@ import { Loading } from 'element-plus/es/components/loading/src/service';
 <script>
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
+// 创建一个 Axios 实例并配置 withCredentials
+const instance = axios.create({
+  withCredentials: true
+});
 
 export default {
     setup() {
@@ -63,77 +67,57 @@ export default {
             return new XMLSerializer().serializeToString(doc.documentElement);
         }
 
-        function generateSingleSVG(font_key, svgHtml) {
-            svgHtml.value = "";
-
-            if(!font_key || font_key.length > 1){
-                return null;
-            }
-
+        async function fetchSvgImage(font_key){
             try {
-                axios.post(url_base+font_key)
-                .then(response => {
-                    if(response.status != 200){
-                        return;
-                    }
-                    const data = response.data;
+                const response = await instance.post(url_base+font_key);
+                if(response.status != 200 || !response.data){
+                    return;
+                }
+                const data = response.data;
 
-                    if(!("res" in data) || data.res.length == 0){
-                        return;
-                    }
-                    console.log(response);
-                    svgHtml.value = removesvgFill(data.res[0].image_path);
-                    return ;
-                    
-                    // return response.data;
-                })
+                if(!("res" in data) || data.res.length == 0){
+                    return null;
+                }
+                return data.res;
             } catch (error) {
                 console.error(error);
+                return null;
             }
-            
-            //  read svg from ttf font
-            // console.log("generateSVG");
-            // if (!font || !svg_text) {
-            //     console.log("font or svg_text is null");
-            //     return null;
-            // }
-
-            // const glyph = font.charToGlyph(svg_text);
-            // if (glyph.unicode == undefined) {
-            //     console.log("cannot find glyph for", svg_text);
-            //     return null;
-            // }
-            // const path = glyph.getPath(0, 50, 72); // x, y, fontSize
-            // const bbox = path.getBoundingBox();
-            // const svgWidth = Math.floor(bbox.x2 - bbox.x1) + 1;
-            // const svgHeight = Math.floor(bbox.y2 - bbox.y1) + 1;
-            // const svgPathData = path.toSVG();
-
-            // // style="width:100%;height:100%;"  make svg fill the parent container
-            // return `<svg xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;"  viewBox="${bbox.x1} ${bbox.y1} ${svgWidth} ${svgHeight}">${svgPathData}</svg>`;
         }
 
-        function generateSVGList() {
-            for (var i = 0; i < textList.value.length; i++) {
-                const font_key = textList.value[i];
-                axios.post(url_base+font_key)
-                .then(response => {
-                    if(response.status != 200){
-                        return;
-                    }
-                    const data = response.data;
+        async function generateSingleSVG(font_key, svgHtml) {
+            svgHtml.value = "";
 
-                    if(!("res" in data) || data.res.length == 0){
-                        return;
-                    }
-
-                    svgHtmlList.value.push({
-                        svg: removesvgFill(data.res[0].image_path),
-                        letter: font_key
-                    });
- 
-                })
+            if(!font_key){
+                return null;
             }
+            if(font_key.length > 1){
+                font_key = font_key[0];
+            }
+
+            const img_res = await fetchSvgImage(font_key);
+            if (!img_res) {
+                return;
+            }
+            svgHtml.value = removesvgFill(img_res[0].image_path);
+        }
+
+        async function generateSVGList() {
+            const charArray = Array.from(textList.value);
+            const promises = charArray.map(async (font_key) => {
+                const img_res = await fetchSvgImage(font_key);
+                if (!img_res) {
+                    return null;
+                }
+                return {
+                    svg: removesvgFill(img_res[0].image_path),
+                    letter: font_key
+                };
+            });
+
+            // Promise.all() 来并发地处理所有的请求
+            const results = await Promise.all(promises);
+            svgHtmlList.value = results.filter(result => result !== null);
         }
 
         onMounted(() => {

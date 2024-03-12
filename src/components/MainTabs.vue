@@ -47,7 +47,7 @@ import { provide, ref, watch ,onMounted} from 'vue';
 export default {
     setup() {
         const tabs = ref([]);
-        const active_index = ref(0);
+        const active_index = ref(3);
         const isDark = ref(false);
         provide("tabsState", {
             active_index,
