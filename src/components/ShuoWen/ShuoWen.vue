@@ -38,6 +38,7 @@ export default {
         const textList = ref("我文子中学十步一人");
         const svgHtmlList = ref([]);
         const url_base = "http://baozi.yeekal.store/shuowen/?q=";
+        // const url_base = "http://118.89.135.45/shuowen/?q=";
 
         function updateQuery(event) {
             text.value = event.target.value;
