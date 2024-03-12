@@ -1,9 +1,9 @@
 <template>
     <div>
-        <p> A simple counter</p>
+        <p class="text-bold text-gray-900 dark:text-gray-300"> A simple counter</p>
         <button 
             @click="count++"
-            class="bg-slate-900 space-x-2 px-4 py-2 rounded-md text-slate-400 text-md"
+            class="bg-surface space-x-2 px-4 py-2 rounded-md text-textOnSurface text-md m-2"
         >Click me:{{ count }}</button>
     </div>
 </template>
