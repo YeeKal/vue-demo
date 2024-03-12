@@ -1,7 +1,7 @@
 <!-- sub-component reference -->
 <template> 
 
-  <div>
+  <div >
     <MainTabs>
       <MainTab title="CountButton"> <CountButton/> </MainTab>
       <MainTab title="Memo"><MemoMain/></MainTab>
@@ -39,7 +39,5 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: white;
-  margin-top: 60px;
 }
 </style>
